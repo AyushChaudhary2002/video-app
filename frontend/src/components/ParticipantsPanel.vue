@@ -8,6 +8,7 @@
     <p class="panel_title">Meeting Participants (30)</p>
     <div class="search_input">
       <input type="text" placeholder="Search Participant">
+      <!-- comment -->
     </div>
     <hr>
   </div>
