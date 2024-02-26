@@ -1,11 +1,17 @@
 <script setup>
-import HomePage from './components/HomePage.vue';
+// import HomePage from './components/HomePage.vue';
+import VideoPage from './components/VideoPage.vue';
 </script>
 
 <template>
-   <HomePage/>
+  <header>
+    <div>
+      <!-- <HomePage/> -->
+      <VideoPage/>
+    </div>
+  </header>
+
 </template>
 
 <style scoped>
-
 </style>

@@ -5,6 +5,10 @@
   font-size: 1.25rem;
 }
 
+body {
+  background: #E0E0E0;
+}
+
 .home-area, .modal-area {
     display: flex;
     align-items: center;
@@ -62,3 +66,4 @@
     background-color: blueviolet;
     color: white;
 }
+
