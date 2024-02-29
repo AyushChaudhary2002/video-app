@@ -1,16 +1,9 @@
 <script setup>
-// import HomePage from './components/HomePage.vue';
-import VideoPage from './components/VideoPage.vue';
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <div>
-      <!-- <HomePage/> -->
-      <VideoPage/>
-    </div>
-  </header>
-
+    <RouterView />
 </template>
 
 <style scoped>

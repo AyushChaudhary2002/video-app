@@ -5,19 +5,18 @@ import ParticipantsPanel from '../components/VideoPage/ParticipantsPanel.vue';
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <SideNav/>
-      <VideoPanel/>
-      <ParticipantsPanel/>
-    </div>
-  </header>
-
+   <header>
+      <div class="wrapper" id="roomContainer">
+         <SideNav />
+         <VideoPanel />
+         <ParticipantsPanel />
+      </div>
+   </header>
 </template>
 
 <style scoped>
-  .wrapper {
-    display: flex;
-    height: 100vh;
-  }
+.wrapper {
+   display: flex;
+   height: 100vh;
+}
 </style>

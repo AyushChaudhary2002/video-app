@@ -5,12 +5,10 @@
 </script>
 
 <template>
-  <div class="video_panel">
+  <div class="video_panel" >
     <p>Live Video Chat Feed</p>
 
-    <div class="video_feed">
-        <!-- Here the video will be shown -->
-        <p>Here the video will be shown</p>
+    <div class="video_feed" id="publisher">
     </div>
     <div class="controls">
       <button @click="toggleMute" class="control_button"><i class="fas fa-microphone"></i></button>

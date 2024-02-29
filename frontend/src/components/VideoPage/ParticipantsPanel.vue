@@ -10,6 +10,7 @@
       <input type="text" placeholder="Search Participant">
     </div>
     <hr>
+    <div id="subscriber"></div>
   </div>
 </template>
 

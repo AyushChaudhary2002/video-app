@@ -1,11 +1,10 @@
 class Api::V1::VonageRoomController < ApplicationController
     def create
-        debugger
         @client = Vonage.client
         user = params[:user]
         session_id = create_session
         token = generate_token(session_id: session_id, name: user)
-        render json: {ClientSessionId: session_id, clientToken: token}
+        render json: {clientSessionId: session_id, clientToken: token}
     end
     private
     def create_session
@@ -16,7 +15,7 @@ class Api::V1::VonageRoomController < ApplicationController
     def generate_token (session_id: , name: 'temp-name')
         token = @client.video.generate_client_token(
             session_id: session_id,
-            role: 'moderator',
+            role: 'publisher',
             expire_time: Time.now.to_i+ (24 * 60 * 60), 
             data: "name=#{name}",
             initial_layout_class_list: ['focus', 'inactive']
