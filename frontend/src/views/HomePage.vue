@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import JoinRoom from './modal/JoinRoom.vue'
-import CreateRoom from './modal/CreateRoom.vue'
+import JoinRoom from '../components/modal/JoinRoom.vue'
+import CreateRoom from '../components/modal/CreateRoom.vue'
 const joinShow = ref(false)
 </script>
 
