@@ -1,7 +1,7 @@
 class Api::V1::VonageRoomController < ApplicationController
     def create
         @client = Vonage.client
-        user = vonage_room_params[:user_name]
+        user = params[:user_name]
         session_id = create_session
         token = generate_token(session_id: session_id, name: user)
         render json: {clientSessionId: session_id, clientToken: token}
@@ -11,10 +11,9 @@ class Api::V1::VonageRoomController < ApplicationController
         begin
             @client = Vonage.client
             session_id = vonage_room_params[:session_id]
-            user = vonage_room_params[:user_name]
-      
-            #token = generate_token(session_id: session_id, name: user)
-            token = "xyz"
+            user = params[:user_name]
+
+            token = generate_token(session_id: session_id, name: user)
       
             render json: { token: token }, status: :ok
         rescue StandardError => e
