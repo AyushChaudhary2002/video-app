@@ -40,7 +40,7 @@ defineProps({
 <style>
     .sidenav {
         /* width: calc(30% - 50px); */
-        width: 20%;
+        width: 15%;
         background-color: #ffffff;
         border-radius: 0.5rem;
         padding: 10px;

@@ -8,3 +8,9 @@
 body {
   background: #E0E0E0;
 }
+
+.subscriber_feed {
+  margin: 0.2rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
