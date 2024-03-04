@@ -6,7 +6,6 @@
 
 <template>
   <div class="video_panel" >
-    <p>Live Video Chat Feed</p>
 
     <div class="video_feed" id="publisher">
     </div>
@@ -27,10 +26,10 @@
         padding: 1rem;
     }
     .video_feed {
-        background: yellow;
         border-radius: 0.5rem;
         min-width: 100%;
         min-height: 75%;
+        cursor: pointer;
     }
     .controls {
         margin-top: 1rem;

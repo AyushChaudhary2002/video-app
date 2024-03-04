@@ -1,6 +1,5 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import { onMounted } from 'vue';
 import VideoPage from '@/components/VideoPage.vue';
 import VideoCall from '@/components/helper/VideoCall.vue'
 const router = useRouter();
@@ -9,7 +8,7 @@ import { ref } from 'vue';
 
 let session ;
 const token = ref(null);
-const appId = 'a867c7c6-83f9-41be-b754-a0d0ff42aaae';
+const appId = import.meta.env.VITE_APP_ID;
 
 const { clientSessionId, clientToken } = router.currentRoute.value.query;
 
