@@ -1,36 +1,37 @@
 <script setup>
+import { useSessionStore } from '../stores/sessionStore'
 import { useRouter } from 'vue-router';
 import VideoPage from '@/components/VideoPage.vue';
 import VideoCall from '@/components/helper/VideoCall.vue'
 const router = useRouter();
 const OT = window.OT;
-import { ref } from 'vue';
 
-let session ;
-const token = ref(null);
 const appId = import.meta.env.VITE_APP_ID;
 
+const sessionStore = useSessionStore();
 const { clientSessionId, clientToken } = router.currentRoute.value.query;
 
 const createSession = async (appId, sessionId) => {
    if (OT.checkSystemRequirements() == 1) {
       const sessionObj = await OT.initSession(appId, sessionId);
       console.log("session created");
-      session = sessionObj;
+      sessionStore.setSession(sessionObj);
    } else {
       console.log('Something is not working properly in your browser');
    }
 }
 
 await createSession(appId, clientSessionId);
-console.log(session);
+console.log(sessionStore.session);
 
-token.value = clientToken;
+sessionStore.setToken(clientToken);
+console.log(sessionStore.token);
+
 </script>
 
 <template>
       <VideoPage/>
-      <VideoCall :session="session" :clientToken="token" />
+      <VideoCall :session="sessionStore.session" :clientToken="sessionStore.token" />
 </template>
 
 <style scoped></style>

@@ -1,7 +1,10 @@
 <script setup>
-    const toggleMute = ()=>{}
-    const toggleVideo = ()=>{}
-    const endCall = ()=>{}
+    import { useSessionStore } from '@/stores/sessionStore';
+
+    const sessionStore = useSessionStore();
+
+    // const toggleMute = ()=>{}
+    // const toggleVideo = ()=>{}
 </script>
 
 <template>
