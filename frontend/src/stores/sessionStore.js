@@ -1,17 +1,28 @@
-import { defineStore } from 'pinia'
-import { ref, reactive } from 'vue'
+import { defineStore } from 'pinia';
+
 
 export const useSessionStore = defineStore('sessionStore', {
     state: () => ({
-        session: reactive(),
-        token: ref(null),
+        session: null,
+        token: null,
     }),
+    getters: {
+        getSession() {
+            return this.session;
+        },
+        getToken() {
+            return this.token;
+        }
+    },
     actions: {
         setToken(clientToken) {
-            this.token = clientToken;
+            this.token =  clientToken;
         },
         setSession(session) {
             this.session = session;
+        },
+        setSessionProperty(key, value) {
+            this.session[key] = value;
         }
     }
-})
+});

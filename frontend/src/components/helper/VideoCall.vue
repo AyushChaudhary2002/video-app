@@ -1,17 +1,14 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, toRaw } from 'vue';
+import { useSessionStore } from '@/stores/sessionStore.js';
 const OT = window.OT;
-const { session, clientToken } = defineProps({
-    session: {
-        type: Object,
-        required: true
-    },
-    clientToken: {
-        type: String,
-        required: true
-    },
+const sessionStore = useSessionStore()
 
-})
+const session = toRaw(sessionStore.getSession);
+const clientToken = sessionStore.getToken
+
+console.log(session);
+console.log(clientToken);
 
 const publisherOptions = {
     'min-width': '100%',

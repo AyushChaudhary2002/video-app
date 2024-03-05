@@ -14,7 +14,7 @@ const { clientSessionId, clientToken } = router.currentRoute.value.query;
 const createSession = async (appId, sessionId) => {
    if (OT.checkSystemRequirements() == 1) {
       const sessionObj = await OT.initSession(appId, sessionId);
-      console.log("session created");
+      console.log(sessionObj);
       sessionStore.setSession(sessionObj);
    } else {
       console.log('Something is not working properly in your browser');
@@ -22,16 +22,15 @@ const createSession = async (appId, sessionId) => {
 }
 
 await createSession(appId, clientSessionId);
-console.log(sessionStore.session);
 
+console.log(clientToken);
 sessionStore.setToken(clientToken);
-console.log(sessionStore.token);
 
 </script>
 
 <template>
       <VideoPage/>
-      <VideoCall :session="sessionStore.session" :clientToken="sessionStore.token" />
+      <VideoCall/>
 </template>
 
 <style scoped></style>
