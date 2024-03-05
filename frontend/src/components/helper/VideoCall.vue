@@ -7,8 +7,6 @@ const sessionStore = useSessionStore()
 const session = toRaw(sessionStore.getSession);
 const clientToken = sessionStore.getToken
 
-console.log(session);
-console.log(clientToken);
 
 const publisherOptions = {
     'min-width': '100%',
@@ -24,6 +22,7 @@ const publisher = OT.initPublisher('publisher', publisherOptions, (error) => {
     }
 });
 
+
 const connectSession = async (session, token) => {
     session.connect(token, (error) => {
         if (error) {
@@ -38,6 +37,9 @@ const connectSession = async (session, token) => {
 }
 const count = ref(1);
 connectSession(session, clientToken)
+
+sessionStore.setPublisher(publisher)
+
 session.on('streamCreated', (event) => {
     const subscriberOptions = {
         height: '10rem',

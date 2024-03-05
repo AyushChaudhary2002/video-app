@@ -5,6 +5,7 @@ export const useSessionStore = defineStore('sessionStore', {
     state: () => ({
         session: null,
         token: null,
+        publisher: null,
     }),
     getters: {
         getSession() {
@@ -12,6 +13,9 @@ export const useSessionStore = defineStore('sessionStore', {
         },
         getToken() {
             return this.token;
+        },
+        getPublisher() {
+            return this.publisher;
         }
     },
     actions: {
@@ -20,6 +24,9 @@ export const useSessionStore = defineStore('sessionStore', {
         },
         setSession(session) {
             this.session = session;
+        },
+        setPublisher(publisher) {
+            this.publisher = publisher;
         },
         setSessionProperty(key, value) {
             this.session[key] = value;
