@@ -1,21 +1,29 @@
 <script setup>
-import { toRaw, ref} from 'vue'
-import { useSessionStore } from '@/stores/sessionStore'
+    import { toRaw, ref } from 'vue'
+    import { useSessionStore } from '@/stores/sessionStore';
+    import { useRouter } from 'vue-router';
 
-const sessionStore = useSessionStore()
-const isToggleVideo = ref(true)
-const isToggleMic = ref(true)
-const toggleVideo = () => {
-    const publisher = toRaw(sessionStore.getPublisher)
-    isToggleVideo.value = !isToggleVideo.value
-    publisher.publishVideo(isToggleVideo)
-}
-const toggleMic = () => {
-    const publisher = toRaw(sessionStore.getPublisher)
-    isToggleMic.value = !isToggleMic.value
-    publisher.publishAudio(isToggleMic)
-}
+    const sessionStore = useSessionStore();
+    const session = toRaw(sessionStore.getSession);
+    const router = useRouter();
 
+    const isToggleVideo = ref(true)
+    const isToggleMic = ref(true)
+
+    const toggleVideo = () => {
+        const publisher = toRaw(sessionStore.getPublisher)
+        isToggleVideo.value = !isToggleVideo.value
+        publisher.publishVideo(isToggleVideo.value)
+    }
+    const toggleMic = () => {
+        const publisher = toRaw(sessionStore.getPublisher)
+        isToggleMic.value = !isToggleMic.value
+        publisher.publishAudio(isToggleMic.value)
+    }
+    const endCall = () => {
+        session.disconnect();
+        router.push({path: "/"});
+    }
 </script>
 
 <template>
@@ -28,9 +36,9 @@ const toggleMic = () => {
             <button @click="endCall" class="control_button end_call">
                 <i class="fas fa-phone"></i>
             </button>
+
             <button v-if="isToggleVideo" @click="toggleVideo" class="control_button"><i class="fas fa-video"></i></button>
             <button v-else @click="toggleVideo" class="control_button disconnect"><i class="fas fa-video-slash"></i></button>
-
         </div>
     </div>
 </template>
