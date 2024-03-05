@@ -24,6 +24,7 @@ const publisher = OT.initPublisher('publisher', publisherOptions, (error) => {
     }
 });
 
+
 const connectSession = async (session, token) => {
     session.connect(token, (error) => {
         if (error) {
@@ -38,6 +39,10 @@ const connectSession = async (session, token) => {
 }
 const count = ref(1);
 connectSession(session, clientToken)
+
+sessionStore.setPublisher(publisher)
+console.log(sessionStore.getPublisher);
+
 session.on('streamCreated', (event) => {
     const subscriberOptions = {
         height: '10rem',
