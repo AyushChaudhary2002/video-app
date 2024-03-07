@@ -15,12 +15,11 @@ const router = useRouter();
 
 const submitCreateForm = async () => {
     if(UserName.value === '')return;
-    const client = await axios.post('http://localhost:3000/api/v1/vonage_room', { 'user': UserName.value })
+    const response = await axios.post('http://localhost:3000/api/v1/vonage_room', { 'user_name': UserName.value })
     router.push({ 
         path: '/call',
         query: {
-            'clientSessionId': client.data.clientSessionId,
-            'clientToken': client.data.clientToken
+            'meetingId': response.data.meetingId,
         }
       });
 }

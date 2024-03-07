@@ -3,14 +3,21 @@ import { useSessionStore } from '../stores/sessionStore'
 import { useRouter } from 'vue-router';
 import VideoPage from '@/components/VideoPage.vue';
 import VideoCall from '@/components/helper/VideoCall.vue'
+import axios from 'axios'
 const router = useRouter();
 const OT = window.OT;
 
 const appId = import.meta.env.VITE_APP_ID;
 
 const sessionStore = useSessionStore();
-const { clientSessionId, clientToken } = router.currentRoute.value.query;
+const { meetingId } = router.currentRoute.value.query;
+const response = await axios.get('http://localhost:3000/api/v1/join_room', {
+      params: {
+        meeting_id: meetingId
+      }
+    });
 
+const {clientSessionId, clientToken} = response.data    
 const createSession = async (appId, sessionId) => {
    if (OT.checkSystemRequirements() == 1) {
       const sessionObj = await OT.initSession(appId, sessionId);

@@ -2,22 +2,30 @@ class Api::V1::VonageRoomController < ApplicationController
     def create
         @client = Vonage.client
         user = params[:user_name]
+        uuid = SecureRandom.uuid
         session_id = create_session
         token = generate_token(session_id: session_id, name: user)
-        render json: {clientSessionId: session_id, clientToken: token}
+        meeting_info = MeetingInfo.new(
+                        uuid: uuid,
+                        session_id: session_id,
+                        token: token
+                    )
+        if meeting_info.save
+            render json: { meetingId: uuid }, status: :ok
+        else
+        error_message = "Error saving record: #{meeting_info.errors.full_messages.join(', ')}"
+        render json: { error: error_message }, status: :unprocessable_entity
+        end         
     end
 
     def join_room
-        begin
-            @client = Vonage.client
-            session_id = vonage_room_params[:session_id]
-            user = params[:user_name]
-
-            token = generate_token(session_id: session_id, name: user)
-      
-            render json: { token: token }, status: :ok
-        rescue StandardError => e
-            render json: { error: e.message }, status: :unprocessable_entity
+        meeting_id = params[:meeting_id]
+        meeting_info = MeetingInfo.find_by(uuid: meeting_id)
+        if meeting_info
+            render json: { clientSessionId: meeting_info.session_id, clientToken: meeting_info.token}, status: :ok
+        else
+            error_message = "Error saving record: #{meeting_info.errors.full_messages.join(', ')}"
+            render json: { error: error_message }, status: :unprocessable_entity
         end
     end
       
@@ -35,8 +43,5 @@ class Api::V1::VonageRoomController < ApplicationController
             data: "name=#{name}",
             initial_layout_class_list: ['focus', 'inactive']
         )
-    end
-    def vonage_room_params
-        params.permit(:session_id, :user_name)
     end
 end
