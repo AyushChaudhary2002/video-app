@@ -15,10 +15,23 @@ const publisherOptions = {
 
 };
 const subscriberId = ref('');
+const verifyMediaDevice = async () => {
+    try {
+        await OT.getUserMedia()
+    } catch (error) {
+        console.log(error);
+        alert(error.originalMessage)
+    }
+}
+
+await verifyMediaDevice()
 
 const publisher = OT.initPublisher('publisher', publisherOptions, (error) => {
     if (error) {
-        console.log("Publishing issue: ", error.name, error.message);
+        if(error.name === "OT_UNABLE_TO_CAPTURE_MEDIA") {
+            alert('Cannot able to connect media device')
+        }
+        console.log("Publishing init issue: ", error.name, error.message);
     }
 });
 
