@@ -1,28 +1,25 @@
 <template>
-    <form class="modal-form join-form" @submit.prevent="submitJoinForm">
-        <input class="form-input" name="username" type="text" v-model="UserName" placeholder="Enter UserName">
-        <input class="form-input" name="session_id" type="text" v-model="SessionId" placeholder="Enter SessionId">
-        <input class="form-submit join-room-btn" type="submit" value="Join">
-    </form>
+  <form class="modal-form join-form" @submit.prevent="submitJoinForm">
+    <input class="form-input" name="meeting_id" type="text" v-model="meetingId" placeholder="Enter Meeting Id">
+    <input class="form-submit join-room-btn" type="submit" value="Join">
+  </form>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
+import { useRouter } from 'vue-router'
 
-const UserName = ref('');
-const SessionId = ref('');
+const router = useRouter();
 
-const submitJoinForm = async() => {
-    try {
-        const response = await axios.post('http://localhost:3000/api/v1/join_room', {
-            session_id: SessionId.value,
-            user_name: UserName.value
-        });
-        console.log(response);
-    } catch(err) {
-        console.log(err);
-    }
+const meetingId = ref('');
+
+const submitJoinForm = async () => {
+  router.push({ 
+        path: '/call',
+        query: {
+            'meetingId': meetingId.value,
+        }
+      });
 }
 </script>
 

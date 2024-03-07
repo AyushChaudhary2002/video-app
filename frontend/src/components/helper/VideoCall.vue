@@ -19,7 +19,6 @@ const verifyMediaDevice = async () => {
     try {
         await OT.getUserMedia()
     } catch (error) {
-        console.log(error);
         alert(error.originalMessage)
     }
 }
