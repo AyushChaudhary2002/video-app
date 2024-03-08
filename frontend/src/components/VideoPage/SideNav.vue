@@ -15,7 +15,6 @@ defineProps({
     <section class="user_details">
         <!-- <img :src="profile_img" alt="">
         <h3>{{ name }}</h3> -->
-        <img class="user_profile_img" src="../assets/images/itachi.jpg" alt="">
         <h3 class="user_name">John Jacobs</h3>
     </section>
     <hr class="divider">

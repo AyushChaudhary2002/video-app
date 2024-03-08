@@ -6,6 +6,7 @@ export const useSessionStore = defineStore('sessionStore', {
         session: null,
         token: null,
         publisher: null,
+        archiveId: null
     }),
     getters: {
         getSession() {
@@ -16,6 +17,9 @@ export const useSessionStore = defineStore('sessionStore', {
         },
         getPublisher() {
             return this.publisher;
+        },
+        getArchiveId() {
+            return this.archiveId
         }
     },
     actions: {
@@ -27,6 +31,9 @@ export const useSessionStore = defineStore('sessionStore', {
         },
         setPublisher(publisher) {
             this.publisher = publisher;
+        },
+        setArchiveId(archiveId) {
+            this.archiveId = archiveId
         },
         setSessionProperty(key, value) {
             this.session[key] = value;
