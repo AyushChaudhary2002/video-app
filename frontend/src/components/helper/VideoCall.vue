@@ -72,6 +72,16 @@ session.on('streamCreated', (event) => {
 session.on("connectionDestroyed", () => {
     console.log('subscriber diconnect');
 });
+
+session.on('archiveStarted', (event) => {
+    sessionStore.setArchiveId(event.id)
+    console.log('ARCHIVE STARTED');
+});
+
+session.on('archiveStopped', () => {
+    console.log('ARCHIVE STOPPED');
+});
+
 subscriberId.value
 const addSubscriberDiv = () => {
     const targetElement = document.getElementById('js-participants');
