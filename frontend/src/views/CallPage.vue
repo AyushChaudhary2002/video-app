@@ -8,10 +8,11 @@ const router = useRouter();
 const OT = window.OT;
 
 const appId = import.meta.env.VITE_APP_ID;
+const appAddress = import.meta.env.VITE_APP_ADDRESS;
 
 const sessionStore = useSessionStore();
 const { meetingId } = router.currentRoute.value.query;
-const response = await axios.get('http://localhost:3000/api/v1/join_room', {
+const response = await axios.get(`${appAddress}/api/v1/join_room`, {
       params: {
         meeting_id: meetingId
       }

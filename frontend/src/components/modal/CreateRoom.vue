@@ -9,13 +9,15 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+const appAddress = import.meta.env.VITE_APP_ADDRESS;
 
 const UserName = ref('');
 const router = useRouter();
 
+
 const submitCreateForm = async () => {
     if(UserName.value === '')return;
-    const response = await axios.post('http://localhost:3000/api/v1/vonage_room', { 'user_name': UserName.value })
+    const response = await axios.post(`${appAddress}/api/v1/vonage_room`, { 'user_name': UserName.value })
     router.push({ 
         path: '/call',
         query: {

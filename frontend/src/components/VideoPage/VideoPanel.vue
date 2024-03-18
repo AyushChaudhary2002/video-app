@@ -5,6 +5,7 @@
     import axios from 'axios';
 
     const sessionStore = useSessionStore();
+    const appAddress = import.meta.env.VITE_APP_ADDRESS;
     const session = toRaw(sessionStore.getSession);
     const router = useRouter();
     const { meetingId } = router.currentRoute.value.query;
@@ -14,10 +15,10 @@
 
     const toggleRecording = async () => {
         if(!sessionStore.getArchiveId){
-            const response = await axios.post('http://localhost:3000/api/v1/vonage_archive/start', { 'meeting_id': meetingId})
+            const response = await axios.post(`${appAddress}/api/v1/vonage_archive/start`, { 'meeting_id': meetingId})
             sessionStore.setArchiveId(response.data.archiveId)
         }else{
-            const response = await axios.post('http://localhost:3000/api/v1/vonage_archive/stop', { 'archive_id': sessionStore.getArchiveId})
+            const response = await axios.post(`${appAddress}/api/v1/vonage_archive/stop`, { 'archive_id': sessionStore.getArchiveId})
             sessionStore.setArchiveId(null)
         }
     }
