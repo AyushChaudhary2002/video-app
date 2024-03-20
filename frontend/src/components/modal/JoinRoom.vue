@@ -15,7 +15,7 @@ const meetingId = ref('');
 
 const submitJoinForm = async () => {
   router.push({ 
-        path: '/call',
+        path: '/pretest',
         query: {
             'meetingId': meetingId.value,
         }
