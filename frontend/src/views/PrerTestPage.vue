@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import NetworkTest from 'opentok-network-test-js';
 import ResultPretest from '@/components/pretest/ResultPretest.vue';
 import ControllerCom from '@/components/pretest/ControllerCom.vue';
-import VideoFeed from '@/components/pretest/VideoFeed.vue';
+import ChatPretest from '@/components/pretest/ChatPretest.vue';
 import axios from 'axios'
 const router = useRouter();
 const OT = window.OT;
@@ -27,8 +27,6 @@ const otNetworkTest = new NetworkTest(OT, {
 });
 
 const resultData = ref(null);
-
-console.log(otNetworkTest);
 
 otNetworkTest.testConnectivity().then((results) => {
   console.log('OpenTok connectivity test results', results);
@@ -73,7 +71,7 @@ otNetworkTest.testConnectivity().then((results) => {
 <template>
   <div class="container">
     <div class="pretest-area">
-      <VideoFeed/>
+      <ChatPretest/>
       <ControllerCom/>
     </div>
     <ResultPretest/>
